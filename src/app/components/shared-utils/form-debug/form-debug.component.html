@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-12 my-5 rounded alert-info">
+    <div *ngIf="form">
+      <div>Detalhes do formulário</div>
+      <br>
+      <pre>Form válido: {{ form.valid }}</pre>
+      <pre>Form submetido: {{ form.submitted }}</pre>
+      <pre>Valores: <br>{{ form.value | json }}</pre>
+    </div>
+  </div>
+</div>

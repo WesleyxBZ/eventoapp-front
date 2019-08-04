@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="mb-3">Convidados cadastrados</h4>
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">RG</th>
+        <th scope="col">Opções</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let convidado of convidados; index as i">
+        <td>{{i + 1}}</td>
+        <td>{{convidado.nome}}</td>
+        <td>{{convidado.rg}}</td>
+        <th scope="col">
+          <button class="btn btn-danger" (click)="deleteConvidado(convidado.id, i)" title="Excluir convidado">
+            <fa-icon [icon]="faTrashAlt" [classes]="['icon', 'text-white']"></fa-icon>
+          </button>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

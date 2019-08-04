@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="mb-3">Cadastrar convidado</h4>
+
+    <!--
+    <div class="mb-2" th:if="${success} != null">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="oi oi-check"></i> <span> <strong th:text="${success}"></strong>
+                        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-2" th:if="${fail} != null">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="oi oi-check"></i> <span> <strong th:text="${fail}"></strong>
+                        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    -->
+
+    <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="rg">RG</label>
+            <input type="text" class="form-control" [(ngModel)]="convidado.rg" name="rg" id="rg" formControlName="rg"
+                   [ngClass]=" verifyValidTouched('rg') ? 'is-invalid' : '' " maxlength="12" autocomplete="off"/>
+            <app-input-error-msg [viewErro]="verifyValidTouched('rg')" msgErro="Campo">
+            </app-input-error-msg>
+          </div>
+          <div class="col-md-8">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" [(ngModel)]="convidado.nome" name="nome" id="nome"
+                   formControlName="nome" [ngClass]=" verifyValidTouched('nome') ? 'is-invalid' : '' "
+                   autocomplete="off"/>
+            <app-input-error-msg [viewErro]="verifyValidTouched('nome')" msgErro="Campo">
+            </app-input-error-msg>
+          </div>
+          <div class="col-md-12 mt-3">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<app-form-debug [form]="form"></app-form-debug>
