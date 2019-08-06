@@ -4,6 +4,7 @@ import {Convidado} from '../../../model/convidado';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {Evento} from '../../../model/evento';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastrar-convidado',
@@ -16,7 +17,8 @@ export class CadastrarConvidadoComponent implements OnInit {
   evento: Evento;
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private convidadoService: ConvidadoService, private formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private convidadoService: ConvidadoService,
+              private formBuilder: FormBuilder, private toastrService: ToastrService) {
     this.convidado = new Convidado();
     this.evento = new Evento();
     this.convidado.evento = this.evento;
@@ -56,13 +58,14 @@ export class CadastrarConvidadoComponent implements OnInit {
     if (this.form.valid) {
       this.convidadoService.createOrUpdate(this.convidado).subscribe(result => {
         if (this.convidado) {
-          console.log('Convidado cadastrado com sucesso');
+          this.toastrService.success('Convidado cadastrado!', 'Sucesso');
           this.form.reset();
         } else {
-          console.log('Convidado não cadastrado');
+          this.toastrService.error('Convidado não cadastrado!', 'Erro');
         }
       });
     } else {
+      this.toastrService.error('Verifique os dados do formulário!', 'Dados inválidos');
       this.verifyValidForm(this.form);
     }
   }

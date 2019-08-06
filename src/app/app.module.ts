@@ -14,6 +14,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedUtilsModule} from './components/shared-utils/shared-utils.module';
 import {CadastrarEventoModule} from './components/cadastrar-evento/cadastrar-evento.module';
 import {EventoModule} from './components/evento/evento.module';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,13 @@ import {EventoModule} from './components/evento/evento.module';
     ReactiveFormsModule,
     SharedUtilsModule,
     CadastrarEventoModule,
-    EventoModule
+    EventoModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false
+    })
   ],
   providers: [
     EventoService,

@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CadastrarEventoComponent} from './cadastrar-evento.component';
 import {SharedUtilsModule} from '../shared-utils/shared-utils.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,13 @@ import {SharedUtilsModule} from '../shared-utils/shared-utils.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedUtilsModule
+    SharedUtilsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    })
   ]
 })
 export class CadastrarEventoModule {

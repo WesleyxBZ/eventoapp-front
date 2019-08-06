@@ -28,7 +28,10 @@ export class ListarConvidadosComponent implements OnInit {
     });
 
     ConvidadoService.emitirConvidadoSalvo.subscribe(
-      convidado => this.convidados.push(convidado)
+      convidado => {
+        this.convidados.push(Object.assign({}, convidado));
+        console.log(this.convidados);
+      }
     );
   }
 

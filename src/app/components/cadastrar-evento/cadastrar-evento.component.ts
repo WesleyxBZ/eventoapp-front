@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Evento} from '../../model/evento';
 import {EventoService} from '../../service/evento.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastrar-evento',
@@ -13,7 +14,7 @@ export class CadastrarEventoComponent implements OnInit {
   evento: Evento;
   form: FormGroup;
 
-  constructor(private eventoService: EventoService, private formBuilder: FormBuilder) {
+  constructor(private eventoService: EventoService, private formBuilder: FormBuilder, private toastrService: ToastrService) {
     this.evento = new Evento();
   }
 
@@ -56,13 +57,14 @@ export class CadastrarEventoComponent implements OnInit {
     if (this.form.valid) {
       this.eventoService.createOrUpdate(this.evento).subscribe(result => {
         if (result) {
-          console.log('Evento cadastrado com sucesso');
+          this.toastrService.success('Evento cadastrado!', 'Sucesso');
           this.form.reset();
         } else {
-          console.log('Evento não cadastrado');
+          this.toastrService.error('Evento não cadastrado!', 'Erro');
         }
       });
     } else {
+      this.toastrService.error('Verifique os dados do formulário!', 'Dados inválidos');
       this.verifyValidForm(this.form);
     }
   }
